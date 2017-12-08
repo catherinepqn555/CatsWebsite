@@ -1,0 +1,48 @@
+﻿@{
+    var imageUrl = "../../Content/Comics/" + ViewBag.ComicNumber + ".jpg";
+    var randomInt = new Random().Next(1, ViewBag.LastComic - 1);
+}
+
+<img class="comic" src=@imageUrl />
+
+@{ 
+    if (ViewBag.ComicNumber == 1) {
+        <div class="row center">
+                <button class="btn btn-primary disabled">|<</button>
+                <button class="btn btn-primary disabled">< Prev</button>
+                @Html.ActionLink("Random", "Comic", "Home", new { id = randomInt }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Next >", "Comic", "Home", new { id = 2 }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(">|", "Index", "Home", new {}, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else if (ViewBag.ComicNumber == ViewBag.LastComic - 1)
+    {
+        <div class="row center">
+                @Html.ActionLink("|<", "Comic", "Home", new { id = 1 }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("< Prev", "Comic", "Home", new { id = ViewBag.ComicNumber - 1 }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Random", "Comic", "Home", new { id = randomInt }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Next >", "Index", "Home", new {}, new { @class = "btn btn-primary" })
+                @Html.ActionLink(">|", "Index", "Home", new { }, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else if (ViewBag.ComicNumber == ViewBag.LastComic)
+    {
+        <div class="row center">
+            @Html.ActionLink("|<", "Comic", "Home", new { id = 1 }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("< Prev", "Comic", "Home", new { id = ViewBag.LastComic - 1 }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Random", "Comic", "Home", new { id = randomInt }, new { @class = "btn btn-primary" })
+            <button class="btn btn-primary disabled">Next ></button>
+            <button class="btn btn-primary disabled">>|</button>
+        </div>
+    }
+    else
+    {
+        <div class="row center">
+                @Html.ActionLink("|<", "Comic", "Home", new { id = 1 }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("< Prev", "Comic", "Home", new { id = ViewBag.ComicNumber - 1 }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Random", "Comic", "Home", new { id = randomInt }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Next >", "Comic", "Home", new { id = ViewBag.ComicNumber + 1}, new { @class = "btn btn-primary" })
+                @Html.ActionLink(">|", "Index", "Home", new { }, new { @class = "btn btn-primary" })
+        </div>
+    }
+}
