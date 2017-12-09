@@ -1,0 +1,14 @@
+﻿@{ 
+    var imageUrl = "../Content/Comics/" + ViewBag.LastComic + ".jpg";
+    var randomInt = new Random().Next(1, ViewBag.LastComic - 1);
+}
+
+<img class="comic" src=@imageUrl />
+
+<div class="row center">
+    @Html.ActionLink("|<", "Comic", "Home", new { id = 1 }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("< Prev", "Comic", "Home", new { id = ViewBag.LastComic - 1 }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Random", "Comic", "Home", new { id = randomInt }, new { @class = "btn btn-primary" })
+    <button class="btn btn-primary disabled">Next ></button>
+    <button class="btn btn-primary disabled">>|</button> 
+</div>
